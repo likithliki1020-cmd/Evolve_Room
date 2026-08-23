@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 180 20% 99%;
+    --foreground: 187 100% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 187 100% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 187 100% 12%;
+    --primary: 187 100% 21%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 36 51% 95%;
+    --secondary-foreground: 187 100% 12%;
+    --muted: 180 10% 96%;
+    --muted-foreground: 187 40% 35%;
+    --accent: 36 51% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 187 20% 90%;
+    --input: 187 20% 90%;
+    --ring: 187 100% 21%;
+    --radius: 0rem;
+  }
+  .dark {
+    --background: 188 45% 4%;
+    --foreground: 180 15% 96%;
+    --card: 188 40% 6%;
+    --card-foreground: 180 15% 96%;
+    --popover: 188 45% 4%;
+    --popover-foreground: 180 15% 96%;
+    --primary: 182 45% 65%;
+    --primary-foreground: 188 45% 4%;
+    --secondary: 188 30% 12%;
+    --secondary-foreground: 180 15% 96%;
+    --muted: 188 30% 12%;
+    --muted-foreground: 180 10% 70%;
+    --accent: 36 60% 65%;
+    --accent-foreground: 188 45% 4%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 188 30% 15%;
+    --input: 188 30% 15%;
+    --ring: 182 45% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline tracking-tight;
+  }
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, hsl(36, 51%, 50%) 0%, hsl(187, 100% , 21%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gold-subtle {
+  background: linear-gradient(135deg, hsla(36, 51%, 50%, 0.05) 0%, hsla(187, 100%, 21%, 0.05) 100%);
+}
+
+/* Currency symbol rendering - ensures rupee symbol displays crisply */
+.currency-symbol {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-feature-settings: 'zero' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
