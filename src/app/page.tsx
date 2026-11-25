@@ -1,21 +1,105 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Heart, Briefcase, Zap, Globe, MessageSquare, Phone } from "lucide-react";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
+import {
+  ArrowRight,
+  Sparkles,
+  Heart,
+  Zap,
+  Phone,
+  ChevronDown,
+  Flower2,
+  Coins,
+  TrendingUp,
+  Sprout,
+  Brain,
+  PenLine,
+} from "lucide-react";
 import { BookingDialog } from "@/components/booking-dialog";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
-  const bgImg = PlaceHolderImages.find(img => img.id === 'healing-bg');
-
   const modalities = [
-    { name: "Life Coaching", href: "/modalities/life-coaching", icon: <Heart className="w-5 h-5" /> },
-    { name: "Ho'oponopono", href: "/modalities/hooponopono", icon: <Sparkles className="w-5 h-5" /> },
-    { name: "EFT", href: "/modalities/eft", icon: <Zap className="w-5 h-5" /> },
-    { name: "NLP", href: "/modalities/nlp", icon: <Briefcase className="w-5 h-5" /> },
-    { name: "Chakra Healing", href: "/modalities/chakra-healing", icon: <Globe className="w-5 h-5" /> },
-    { name: "Graphology", href: "/graphology", icon: <MessageSquare className="w-5 h-5" /> },
+    {
+      name: "Life Coaching",
+      href: "/modalities/life-coaching",
+      icon: Sprout,
+      image: "/modalities/life-coaching.svg",
+      text: "Gain clarity, break limiting patterns and create a life that feels aligned, fulfilling and truly yours.",
+      button: "bg-[#0F5257]",
+    },
+    {
+      name: "Ho’oponopono",
+      href: "/modalities/hooponopono",
+      icon: Heart,
+      image: "/modalities/hooponopono.svg",
+      text: "Release the past, cultivate forgiveness and create inner peace in your relationships and within yourself.",
+      button: "bg-[#4B5E2F]",
+    },
+    {
+      name: "EFT",
+      subtitle: "Emotional Freedom Technique",
+      href: "/modalities/eft",
+      icon: Zap,
+      image: "/modalities/eft.svg",
+      text: "Release emotional blocks, calm anxiety and restore balance through simple yet powerful tapping techniques.",
+      button: "bg-[#8A6414]",
+    },
+    {
+      name: "NLP",
+      href: "/modalities/nlp",
+      icon: Brain,
+      image: "/modalities/nlp.svg",
+      text: "Rewire your thought patterns, shift your mindset and create new possibilities for a more empowered you.",
+      button: "bg-[#8B4A44]",
+    },
+    {
+      name: "Chakra Healing",
+      href: "/modalities/chakra-healing",
+      icon: Flower2,
+      image: "/chakra/chakra-assessment.svg",
+      text: "Balance your energy, release blockages and feel more grounded, vibrant and aligned in your daily life.",
+      button: "bg-[#0E4B4B]",
+    },
+    {
+      name: "Graphology",
+      href: "/graphology",
+      icon: PenLine,
+      image: "/modalities/graphology.svg",
+      text: "Discover what your handwriting reveals about your personality, emotions and hidden strengths.",
+      button: "bg-[#6A4A5C]",
+    },
+  ];
+
+  const areas = [
+    {
+      number: "01",
+      title: "Health",
+      text: "Regulate your nervous system and build a healthier, more balanced you.",
+      icon: Flower2,
+      image: "/areas/health.svg",
+    },
+    {
+      number: "02",
+      title: "Relationships",
+      text: "Heal patterns, build healthier connections and experience more fulfilling relationships.",
+      icon: Heart,
+      image: "/areas/relationships.svg",
+    },
+    {
+      number: "03",
+      title: "Career",
+      text: "Gain clarity, overcome inner blocks and create growth with purpose.",
+      icon: TrendingUp,
+      image: "/areas/career.svg",
+    },
+    {
+      number: "04",
+      title: "Money",
+      text: "Shift limiting beliefs, invite abundance and create a healthier relationship with money.",
+      icon: Coins,
+      image: "/areas/money.svg",
+    },
   ];
 
   const WHATSAPP_LINK = "https://wa.me/919876543210?text=I'm%20interested%20in%20booking%20a%20session%20at%20The%20Evolve%20Room.";
@@ -23,49 +107,77 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
-        {bgImg && (
-          <Image 
-            src={bgImg.imageUrl} 
-            alt="The Evolve Room Background" 
-            fill 
-            className="object-cover animate-in fade-in duration-1000" 
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-28 pb-24">
+        {/* Background: gradient, glows and flowing waves */}
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-secondary/60" />
+          <div className="absolute -top-40 -left-40 h-[32rem] w-[32rem] rounded-full bg-accent/25 blur-3xl" />
+          <div className="absolute top-1/4 -right-40 h-[34rem] w-[34rem] rounded-full bg-primary/20 blur-3xl" />
+          <div className="absolute -bottom-40 left-1/4 h-[28rem] w-[28rem] rounded-full bg-accent/15 blur-3xl" />
+
+          <Image
+            src="/hero/hero-aurora.svg"
+            alt=""
+            fill
+            unoptimized
             priority
-            data-ai-hint={bgImg.imageHint}
+            sizes="100vw"
+            className="object-cover opacity-90"
           />
-        )}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
-        
-        <div className="max-w-5xl mx-auto text-center z-10 space-y-12">
-          <div className="space-y-6">
-            <h1 className="text-6xl md:text-9xl font-headline font-bold tracking-tighter text-white animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 drop-shadow-2xl">
-              Evolve Beyond <br className="hidden md:block" /> Your Limits.
+
+          <Sparkles className="absolute left-[12%] top-[30%] hidden h-6 w-6 animate-pulse text-primary/60 md:block" />
+          <Sparkles className="absolute right-[14%] top-[24%] hidden h-5 w-5 animate-pulse text-accent/70 [animation-delay:700ms] md:block" />
+          <Sparkles className="absolute bottom-[26%] right-[20%] hidden h-6 w-6 animate-pulse text-primary/60 [animation-delay:1400ms] md:block" />
+          <Sparkles className="absolute bottom-[30%] left-[18%] hidden h-5 w-5 animate-pulse text-accent/70 [animation-delay:2100ms] md:block" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-5xl text-center space-y-12">
+          <div className="space-y-8">
+            <h1 className="font-headline text-5xl font-bold leading-[0.95] tracking-tight sm:text-7xl md:text-9xl animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+              <span className="block">Evolve Beyond</span>
+              <span className="gold-gradient inline-block pb-3 pr-3 italic">Your Limits</span>
             </h1>
-            <p className="text-xl md:text-3xl text-white/90 max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-8 delay-500 duration-1000 font-medium italic">
-              Private Emotional Healing & Deep Inner Transformation.
+
+            <div className="flex items-center justify-center gap-4 animate-in fade-in duration-1000 delay-500">
+              <span className="h-px w-14 bg-primary/60 sm:w-24" />
+              <span className="h-2.5 w-2.5 rotate-45 bg-primary" />
+              <span className="h-px w-14 bg-primary/60 sm:w-24" />
+            </div>
+
+            <p className="mx-auto max-w-3xl font-headline text-2xl italic leading-snug text-foreground/80 sm:text-3xl md:text-4xl animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500">
+              A journey of Self-Discovery, Inner Growth and Lasting Transformation
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-in fade-in slide-in-from-bottom-8 delay-700 duration-1000">
-            <BookingDialog 
+          <div className="flex flex-col items-center justify-center gap-5 sm:flex-row animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-700">
+            <BookingDialog
               trigger={
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-8 text-xl tracking-widest uppercase rounded-none transition-all hover:scale-105 shadow-2xl">
-                  BOOK A SESSION
+                <Button
+                  size="lg"
+                  className="rounded-none bg-primary px-12 py-8 text-lg font-bold uppercase tracking-[0.25em] text-primary-foreground shadow-2xl shadow-primary/30 transition-all hover:scale-105 hover:bg-primary/90"
+                >
+                  Book a Session
                 </Button>
               }
             />
             <Link href="/let-practice">
-              <Button size="lg" variant="outline" className="border-primary text-primary dark:border-white dark:text-white hover:bg-primary/10 dark:hover:bg-white/10 px-12 py-8 text-xl tracking-widest uppercase rounded-none transition-all backdrop-blur-md font-bold">
-                JOIN LET'S PRACTICE
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-none border-primary px-12 py-8 text-lg font-bold uppercase tracking-[0.25em] text-primary transition-all hover:bg-primary/10 hover:text-primary"
+              >
+                Join Let&rsquo;s Practice
               </Button>
             </Link>
           </div>
         </div>
+
+        <ChevronDown className="absolute bottom-8 left-1/2 h-7 w-7 -translate-x-1/2 animate-bounce text-primary/70" />
       </section>
 
       {/* Section 2: What We Work On */}
       <section className="py-24 md:py-32 px-6 bg-card">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-16 items-center">
           <div className="space-y-8">
             <h2 className="text-4xl md:text-6xl font-headline font-bold tracking-tight">We Work On All <br /> Areas of Life</h2>
             <div className="h-1 w-20 bg-accent" />
@@ -82,53 +194,106 @@ export default function Home() {
             </ul>
             <p className="pt-4 font-bold italic text-primary">Because real evolution is not partial — it is whole.</p>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-background p-8 aspect-square flex flex-col justify-end border border-border/50 hover:bg-gold-subtle transition-colors">
-              <span className="text-accent text-4xl mb-4 font-headline font-bold">01</span>
-              <h3 className="text-xl font-bold uppercase tracking-widest font-headline">Health</h3>
-            </div>
-            <div className="bg-gold-subtle p-8 aspect-square flex flex-col justify-end border border-primary/20 hover:bg-background transition-colors">
-              <span className="text-primary text-4xl mb-4 font-headline font-bold">02</span>
-              <h3 className="text-xl font-bold uppercase tracking-widest font-headline">Growth</h3>
-            </div>
-            <div className="bg-gold-subtle p-8 aspect-square flex flex-col justify-end border border-primary/20 hover:bg-background transition-colors">
-              <span className="text-primary text-4xl mb-4 font-headline font-bold">03</span>
-              <h3 className="text-xl font-bold uppercase tracking-widest font-headline">Love</h3>
-            </div>
-            <div className="bg-background p-8 aspect-square flex flex-col justify-end border border-border/50 hover:bg-gold-subtle transition-colors">
-              <span className="text-accent text-4xl mb-4 font-headline font-bold">04</span>
-              <h3 className="text-xl font-bold uppercase tracking-widest font-headline">Wealth</h3>
-            </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {areas.map((area) => {
+              const Icon = area.icon;
+              return (
+                <div
+                  key={area.title}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-border/60 bg-background shadow-md transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-2xl"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={area.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 90vw"
+                      unoptimized
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  </div>
+                  <div className="relative -mt-7 flex flex-1 flex-col items-center px-5 pb-7 text-center">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg ring-4 ring-background transition-transform duration-500 group-hover:scale-110">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <span className="mt-4 font-headline text-lg font-bold text-accent">{area.number}</span>
+                    <h3 className="font-headline text-xl font-bold uppercase tracking-widest">{area.title}</h3>
+                    <div className="my-3 h-px w-8 bg-primary" />
+                    <p className="text-sm leading-relaxed text-muted-foreground">{area.text}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Section 3: Our Healing Modalities */}
       <section className="py-24 md:py-32 px-6 bg-background">
-        <div className="max-w-7xl mx-auto text-center mb-20 space-y-4">
+        <div className="max-w-7xl mx-auto text-center mb-16 space-y-4">
           <h2 className="text-4xl md:text-6xl font-headline font-bold text-primary">Our Healing Modalities</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg italic">
             A diverse toolkit of ancient wisdom and modern psychology to facilitate your deepest breakthroughs.
           </p>
         </div>
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          {modalities.map((mod) => (
-            <Link 
-              key={mod.name} 
-              href={mod.href}
-              className="group p-10 border border-border/50 hover:border-primary/50 transition-all duration-500 bg-card hover:bg-gold-subtle shadow-sm hover:shadow-xl"
-            >
-              <div className="text-primary mb-8 group-hover:scale-110 transition-transform duration-500">{mod.icon}</div>
-              <h3 className="text-2xl font-bold mb-4 tracking-widest uppercase font-headline">{mod.name}</h3>
-              <p className="text-muted-foreground mb-8 line-clamp-2">
-                Discover the power of {mod.name} and how it can rewire your emotional state.
-              </p>
-              <span className="text-primary text-xs uppercase tracking-[0.2em] font-bold flex items-center group-hover:translate-x-2 transition-transform">
-                Explore Path <ArrowRight className="w-4 h-4 ml-2" />
-              </span>
-            </Link>
-          ))}
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {modalities.map((mod) => {
+            const Icon = mod.icon;
+            return (
+              <Link
+                key={mod.name}
+                href={mod.href}
+                className="group flex flex-col overflow-hidden rounded-2xl border border-border/60 bg-card shadow-md transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-2xl"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={mod.image}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    unoptimized={mod.image.endsWith(".svg")}
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-card to-transparent"
+                  />
+                </div>
+
+                <div className="relative -mt-9 flex flex-1 flex-col items-center px-8 pb-8 text-center">
+                  <div className="flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-full border border-primary/40 bg-background text-primary shadow-lg transition-transform duration-500 group-hover:scale-110">
+                    <Icon className="h-8 w-8" />
+                  </div>
+
+                  <h3 className="mt-5 font-headline text-2xl font-bold uppercase tracking-widest">
+                    {mod.name}
+                  </h3>
+                  {mod.subtitle && (
+                    <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                      ({mod.subtitle})
+                    </span>
+                  )}
+                  <div className="my-4 h-px w-10 bg-primary" />
+                  <p className="leading-relaxed text-muted-foreground">{mod.text}</p>
+
+                  <div className="mt-auto w-full pt-7">
+                    <span
+                      className={cn(
+                        "inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-xs font-bold uppercase tracking-[0.25em] text-white shadow-md transition-all duration-500 group-hover:gap-4 group-hover:shadow-xl",
+                        mod.button
+                      )}
+                    >
+                      Explore Path <ArrowRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
+
         <div className="text-center mt-16">
           <Link href="/modalities">
             <Button variant="link" className="text-primary uppercase tracking-[0.3em] font-bold text-sm">
@@ -147,7 +312,7 @@ export default function Home() {
               <h3 className="font-bold tracking-widest uppercase text-xs">1:1 Session</h3>
               <p className="text-[10px] text-muted-foreground italic uppercase">Personalized deep diving</p>
               <div className="pt-4 mt-auto">
-                <BookingDialog 
+                <BookingDialog
                   trigger={
                     <Button variant="outline" className="w-full border-primary text-primary group-hover:bg-primary group-hover:text-primary-foreground rounded-none uppercase text-[10px] tracking-widest font-bold h-12">BOOK NOW</Button>
                   }
@@ -174,7 +339,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-12">
-            <BookingDialog 
+            <BookingDialog
               isPayNow={true}
               trigger={
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-8 text-xl tracking-widest rounded-none w-full sm:w-auto uppercase font-bold transition-all hover:scale-105 shadow-xl">

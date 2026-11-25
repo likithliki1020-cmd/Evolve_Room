@@ -3,48 +3,62 @@
 @tailwind utilities;
 
 @layer base {
+
+  /* ---------- LIGHT MODE: Sage & Gold ---------- */
   :root {
-    --background: 180 20% 99%;
-    --foreground: 187 100% 12%;
+    --background: 44 41% 95%;
+    /* #F7F4EC cream */
+    --foreground: 147 15% 14%;
+    /* #1F2A24 deep green-black */
     --card: 0 0% 100%;
-    --card-foreground: 187 100% 12%;
+    /* #FFFFFF */
+    --card-foreground: 147 15% 14%;
     --popover: 0 0% 100%;
-    --popover-foreground: 187 100% 12%;
-    --primary: 187 100% 21%;
+    --popover-foreground: 147 15% 14%;
+    --primary: 41 62% 37%;
+    /* #9A7424 deep gold */
     --primary-foreground: 0 0% 100%;
-    --secondary: 36 51% 95%;
-    --secondary-foreground: 187 100% 12%;
-    --muted: 180 10% 96%;
-    --muted-foreground: 187 40% 35%;
-    --accent: 36 51% 50%;
-    --accent-foreground: 0 0% 100%;
+    --secondary: 44 35% 90%;
+    --secondary-foreground: 147 15% 14%;
+    --muted: 44 25% 92%;
+    --muted-foreground: 147 12% 38%;
+    --accent: 137 18% 52%;
+    /* #6F9A7B sage */
+    --accent-foreground: 147 15% 14%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 187 20% 90%;
-    --input: 187 20% 90%;
-    --ring: 187 100% 21%;
+    --border: 44 22% 86%;
+    --input: 44 22% 86%;
+    --ring: 41 62% 37%;
     --radius: 0rem;
   }
+
+  /* ---------- DARK MODE: Sage & Gold ---------- */
   .dark {
-    --background: 188 45% 4%;
-    --foreground: 180 15% 96%;
-    --card: 188 40% 6%;
-    --card-foreground: 180 15% 96%;
-    --popover: 188 45% 4%;
-    --popover-foreground: 180 15% 96%;
-    --primary: 182 45% 65%;
-    --primary-foreground: 188 45% 4%;
-    --secondary: 188 30% 12%;
-    --secondary-foreground: 180 15% 96%;
-    --muted: 188 30% 12%;
-    --muted-foreground: 180 10% 70%;
-    --accent: 36 60% 65%;
-    --accent-foreground: 188 45% 4%;
+    --background: 163 24% 6%;
+    /* #0B1210 */
+    --foreground: 44 38% 92%;
+    /* #F3EFE4 */
+    --card: 156 22% 9%;
+    /* #121C18 */
+    --card-foreground: 44 38% 92%;
+    --popover: 156 22% 9%;
+    --popover-foreground: 44 38% 92%;
+    --primary: 41 54% 54%;
+    /* #C9A24B gold */
+    --primary-foreground: 163 24% 6%;
+    --secondary: 160 22% 13%;
+    --secondary-foreground: 44 38% 92%;
+    --muted: 160 18% 13%;
+    --muted-foreground: 150 10% 68%;
+    --accent: 137 20% 64%;
+    /* #8FB59A sage */
+    --accent-foreground: 163 24% 6%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 188 30% 15%;
-    --input: 188 30% 15%;
-    --ring: 182 45% 65%;
+    --border: 156 18% 16%;
+    --input: 156 18% 16%;
+    --ring: 41 54% 54%;
   }
 }
 
@@ -52,22 +66,32 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground font-body antialiased;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-headline tracking-tight;
   }
 }
 
+/* Logo gradient: gold -> sage, adapts automatically to light/dark */
 .gold-gradient {
-  background: linear-gradient(135deg, hsl(36, 51%, 50%) 0%, hsl(187, 100% , 21%) 100%);
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/* Soft highlight for cards, adapts automatically to light/dark */
 .bg-gold-subtle {
-  background: linear-gradient(135deg, hsla(36, 51%, 50%, 0.05) 0%, hsla(187, 100%, 21%, 0.05) 100%);
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.07) 0%, hsl(var(--accent) / 0.07) 100%);
 }
 
 /* Currency symbol rendering - ensures rupee symbol displays crisply */
